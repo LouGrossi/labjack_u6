@@ -3,10 +3,10 @@ import LabJackPython
 """
     Editable pinout variables 
 """
-EI1050_GROUND_PORT = 0
-EI1050_POWER_PORT = 1
-EI1050_DATA_PORT = 2
-EI1050_CLOCK_PORT = 3
+EI1050_GROUND_PORT = "GND"  # black
+EI1050_POWER_PORT = 0   # red
+EI1050_DATA_PORT = 1    # green
+EI1050_CLOCK_PORT = 2   # white
 
 """
     Objects you need
@@ -17,7 +17,11 @@ u6_device = LabJackPython.openLabJack(LabJackPython.LJ_dtU6, LabJackPython.LJ_ct
     Test code below
 """
 # configure u6 for temp/humidity probe
-common.ei1050.configure(u6_device, 1, 2, 3)
-
+print(common.ei1050.configure(u6_device, EI1050_POWER_PORT, EI1050_DATA_PORT, EI1050_CLOCK_PORT))
+print(common.ei1050.humidity.relative_humidity(u6_device))
+#print(common.ei1050.temperature.kelvin(u6_device))
+#print(common.ei1050.temperature.celsius(u6_device))
+#print(common.ei1050.temperature.fahrenheit(u6_device))
 # print the temp in fahrenheit
-print(common.ei1050.getTemperature_fahrenheit(u6_device))
+
+#common.ei1050.temperature.
